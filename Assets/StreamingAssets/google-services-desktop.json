@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "700146091328",
+    "project_id": "rompecabezas-juego",
+    "storage_bucket": "rompecabezas-juego.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:700146091328:android:d53bdea97c8ddcd5f526a5",
+        "android_client_info": {
+          "package_name": "com.dantegames.mentlix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "700146091328-f0pj4bmjisf3dncm1l03p0sq2hof2fdb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAms_x2m_nGD5HJInKbUfHVSsTwEV3vWhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "700146091328-f0pj4bmjisf3dncm1l03p0sq2hof2fdb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
