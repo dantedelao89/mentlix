@@ -12,6 +12,9 @@ public class CurrencyController : MonoBehaviourSingleton<CurrencyController>
 
     private void Start()
     {
+#if UNITY_EDITOR
+        //AddCurrency(1000);
+#endif
         UpdateTexts();
     }
 
@@ -25,6 +28,7 @@ public class CurrencyController : MonoBehaviourSingleton<CurrencyController>
         int newCurrAvailable = currAvailable + amountToAdd;
 
         PlayerPrefs.SetInt(PlayerPrefKeys.CURRENCY_AVAILABLE, newCurrAvailable);
+        GameManager.instance.FillBrain();
 
         UpdateTexts();
     }

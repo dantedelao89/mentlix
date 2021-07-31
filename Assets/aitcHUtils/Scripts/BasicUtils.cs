@@ -266,6 +266,58 @@ namespace aitcHUtils
             }
         }
 
+        /// <summary>
+        /// Runs the action code after delay. If delay = 0, code with run after 1 frame.
+        /// </summary>
+        /// <param name="behaviour">The behaviour on which coroutine run. Use "this" in most cases</param>
+        /// <param name="action">The code to run</param>
+        /// <param name="IsLocalScale">Whether to change the local scale or the width & height of UI</param>
+        public static Coroutine ScaleToUI(MonoBehaviour behaviour, RectTransform rect, Vector2 finalAnchoredPos, float Speed, bool IsLocalScale = false, System.Action action = null)
+        {
+            return behaviour.StartCoroutine(coroutineScaleToUI(rect, finalAnchoredPos, Speed, IsLocalScale,action));
+        }
 
+        static IEnumerator coroutineScaleToUI(RectTransform rect, Vector2 finalAnchoredPos, float Speed, bool IsLocalScale,System.Action action)
+        {
+            bool isIncreaseX = finalAnchoredPos.x > rect.rect.width;
+            bool isIncreaseY = finalAnchoredPos.y > rect.rect.height;
+
+            while (rect.rect.width != finalAnchoredPos.x || rect.rect.height != finalAnchoredPos.y)
+            {
+                if (isIncreaseY)
+                {
+                    rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rect.rect.height + Speed * Time.deltaTime);
+                    if (rect.rect.height > finalAnchoredPos.y)
+                        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, finalAnchoredPos.y);
+                }
+                else
+                { 
+                    rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, rect.rect.height - Speed * Time.deltaTime);
+                    if (rect.rect.height < finalAnchoredPos.y)
+                        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, finalAnchoredPos.y);
+                }
+
+                if (isIncreaseX)
+                {
+                    rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rect.rect.width + Speed * Time.deltaTime);
+                    if (rect.rect.width > finalAnchoredPos.x)
+                        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, finalAnchoredPos.x);
+                }
+                else
+                { 
+                    rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, rect.rect.width - Speed * Time.deltaTime);
+                    if (rect.rect.width < finalAnchoredPos.x)
+                        rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, finalAnchoredPos.x);
+                }
+
+                yield return null;
+            }
+            yield return null;
+
+            if (action != null)
+            {
+                action.Invoke();
+            }
+        }
     }
 }

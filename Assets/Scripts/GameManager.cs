@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using aitcHUtils;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
     [SerializeField]
     private GameObject levelBtn;
+    [SerializeField]
+    private RectTransform brainIcon;
     [SerializeField]
     private GameObject noInteractionObj;
     [SerializeField]
@@ -155,6 +158,25 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         }
 
         Localization.instance.ChangeLanguage(langButton.name);
+    }
+
+    public void onClick_ShowRewardedAd() 
+    {
+        Debug.Log("Loading ad1");
+        AdmobManager.instance.ShowRewardedVideo();
+    }
+
+    public void onClick_ReadMoreTerms() 
+    {
+        Application.OpenURL("https://docs.google.com/document/d/12RJd81VYPFEyNzqEyg1g5EmGlJGAxenEiC3ls-mltVQ/edit#");
+    }
+
+    public void FillBrain() 
+    {
+        MiscUtils.ScaleToUI(this, brainIcon, new Vector2(65f, 65f), 300f, false, () =>
+          {
+              MiscUtils.ScaleToUI(this, brainIcon, new Vector2(52f, 51f), 300f);
+          });
     }
 }
 

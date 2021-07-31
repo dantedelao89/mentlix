@@ -128,7 +128,6 @@ namespace DebugStuff
                     GUI.skin.textField.fontSize = (int)(Screen.width * 0.03f);
                     GUI.skin.textField.alignment = TextAnchor.MiddleCenter;
 
-
                     #region ControlBtns
                     if (GUI.Button(new Rect(
                                             //Screen.width - Screen.width * 0.1f - 10f,
@@ -209,6 +208,7 @@ namespace DebugStuff
                         UpdateLogs();
                     }
                     #endregion
+
                     float textAreaHeight = GUI.skin.textArea.CalcHeight(new GUIContent(myLog), width);
 
                     if(showLatest)
